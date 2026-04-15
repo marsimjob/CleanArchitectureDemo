@@ -1,4 +1,5 @@
-﻿using Application.Layer.Queries.GetAllQuery;
+﻿using Application.Layer.Commands.CreateToy;
+using Application.Layer.Queries.GetAllQuery;
 using Application.Layer.Queries.GetToyByID;
 using Domain.Layer.DTOs;
 using MediatR;
@@ -32,6 +33,13 @@ namespace API.Layer
             var result = await _sender.Send(new GetToyByIdQuery(id));
             if (result == null)
                 return NotFound();
+            return Ok(result);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<ToyDto>> PostToy([FromBody] CreateToyCommand request)
+        {
+            var result = await _sender.Send(request);
             return Ok(result);
         }
     }

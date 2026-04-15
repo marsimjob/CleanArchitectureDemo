@@ -1,7 +1,7 @@
+using API.Layer.Middleware;
+using Application.Layer.Behaviors;
 using Application.Layer.Interfaces;
-using Application.Layer.Queries.GetAllQuery;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 namespace API.Layer
 {
     public class Program
@@ -16,8 +16,7 @@ namespace API.Layer
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            builder.Services.AddMediatR(config =>
-            config.RegisterServicesFromAssembly(typeof(GetAllToysQuery).Assembly));
+            builder.Services.AddApplicationServices();
 
             // Mapping Models to DTOs
             builder.Services.AddAutoMapper(typeof(ToyMappingProfile));
@@ -38,6 +37,7 @@ namespace API.Layer
                 app.UseSwaggerUI();
             }
 
+            app.UseMiddleware<ValidationExceptionMiddleware>();
             app.UseHttpsRedirection();
             app.UseAuthorization();
             app.MapControllers();

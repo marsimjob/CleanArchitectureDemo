@@ -12,6 +12,12 @@ public class ToyRepository : IToyRepository
         _context = context;
     }
 
+    public async Task AddAsync(Toy newToy, CancellationToken cancellationToken)
+    {
+        await _context.Toys.AddAsync(newToy, cancellationToken); 
+        await _context.SaveChangesAsync(cancellationToken);
+    }
+
     public async Task<List<Toy>> GetAllAsync(CancellationToken cancellationToken)
     {
         return await _context.Toys.ToListAsync();
