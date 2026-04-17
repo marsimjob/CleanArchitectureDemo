@@ -13,5 +13,7 @@ namespace Application.Layer.Interfaces
         Task<List<Toy>> GetAllAsync(CancellationToken cancellationToken);
         Task<Toy?> GetByIdAsync(int id, CancellationToken cancellationToken);
         Task AddAsync(Toy newToy, CancellationToken cancellationToken);
+
+        Task SoftDeleteAsync(int id, CancellationToken cancellationToken);
     }
 }

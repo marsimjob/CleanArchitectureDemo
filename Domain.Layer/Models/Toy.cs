@@ -28,6 +28,9 @@ namespace Domain.Layer.Models
         // Price
         public decimal Price { get; set; }
 
+        // Add summary for Exercise 3
+        public string Summary { get; set; } = string.Empty;
+
         // Exercise 4
         public bool IsDeleted { get; set; } = false;
     }

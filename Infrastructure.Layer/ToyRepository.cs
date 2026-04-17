@@ -27,4 +27,16 @@ public class ToyRepository : IToyRepository
     {
         return await _context.Toys.FindAsync(id);
     }
+
+    public async Task SoftDeleteAsync(int id, CancellationToken cancellationToken)
+    {
+        var toy = await _context.Toys.FindAsync(id);
+
+        if (toy == null)
+            throw new Exception("Toy not found");
+
+        toy.IsDeleted = true;
+        await _context.SaveChangesAsync(cancellationToken);
+    }
+
 }

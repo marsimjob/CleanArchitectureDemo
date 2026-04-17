@@ -15,5 +15,6 @@ namespace Application.Layer.Commands.CreateToy
         public string PlaySet { get; set; }
         public decimal Price { get; set; }
         public string Brand { get; set; }
+
     }
 }

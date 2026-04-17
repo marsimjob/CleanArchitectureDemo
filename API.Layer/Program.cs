@@ -1,6 +1,8 @@
 using API.Layer.Middleware;
 using Application.Layer.Behaviors;
 using Application.Layer.Interfaces;
+using Application.Layer.Services;
+using Infrastructure.Layer;
 using Microsoft.EntityFrameworkCore;
 namespace API.Layer
 {
@@ -17,6 +19,9 @@ namespace API.Layer
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddApplicationServices();
+
+            // OpenAI services
+            builder.Services.AddScoped<IOpenAIService, OpenAIService>();
 
             // Mapping Models to DTOs
             builder.Services.AddAutoMapper(typeof(ToyMappingProfile));

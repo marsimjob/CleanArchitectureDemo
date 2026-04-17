@@ -1,4 +1,5 @@
 ﻿using Application.Layer.Commands.CreateToy;
+using Application.Layer.Commands.DeleteToy;
 using Application.Layer.Queries.GetAllQuery;
 using Application.Layer.Queries.GetToyByID;
 using Domain.Layer.DTOs;
@@ -41,6 +42,15 @@ namespace API.Layer
         {
             var result = await _sender.Send(request);
             return Ok(result);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<Unit>> SoftDeleteToy(int id)
+        {
+            {
+                await _sender.Send(new DeleteToyCommand(id));
+                return NoContent();
+            }
         }
     }
 }

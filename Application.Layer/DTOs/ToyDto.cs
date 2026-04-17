@@ -23,5 +23,8 @@ namespace Domain.Layer.DTOs
 
         // Brand / Maker
         public string Brand { get; init; } = string.Empty;
+
+        // Summary
+        public string Summary { get; init; } = string.Empty ;
     }
 }
